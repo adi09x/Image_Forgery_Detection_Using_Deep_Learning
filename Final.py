@@ -16,7 +16,7 @@ Upload an image, and we will analyze it to detect any possible forgery using a d
 model = tf.keras.models.load_model('C:/Users/Aditya Jadhav/Desktop/IFD/BEProjectMantraNetModel.h5')
 
 # Define class names
-class_names = ['Forged', 'True']
+class_names = ['Forged', 'Not Forged']
 
 # Function to convert input image to ELA applied image
 def convert_to_ela_image(path, quality):
