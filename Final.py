@@ -65,7 +65,6 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg"])
 if uploaded_file is not None:
     st.image(
         uploaded_file,
-        caption=None,
         use_column_width=None,
         clamp=False,
         channels="RGB",
