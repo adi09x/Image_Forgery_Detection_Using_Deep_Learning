@@ -57,7 +57,7 @@ def display_prediction(image_path, y_pred_class):
     ax[1].imshow(convert_to_ela_image(image_path, 90))
     ax[1].set_title("ELA Image")
     st.pyplot(fig)
-    st.markdown(f"### Prediction: **{class_names[y_pred_class]}**")
+    st.markdown(f"### Detection: **{class_names[y_pred_class]}**")
 
 
 # File uploader and detect button
