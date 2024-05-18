@@ -66,7 +66,6 @@ if uploaded_file is not None:
     st.image(
         uploaded_file,
         caption=None,
-        width=None,
         use_column_width=None,
         clamp=False,
         channels="RGB",
