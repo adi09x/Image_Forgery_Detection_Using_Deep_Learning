@@ -20,7 +20,6 @@ model = tf.keras.models.load_model("BEProjectMantraNetModel.h5")
 # Define class names
 class_names = ["Forged", "Not Forged"]
 
-
 # Function to convert input image to ELA applied image
 def convert_to_ela_image(path, quality):
     original_image = Image.open(path).convert("RGB")
@@ -36,7 +35,6 @@ def convert_to_ela_image(path, quality):
     ela_image = ImageEnhance.Brightness(ela_image).enhance(scale)
     return ela_image
 
-
 # Function to prepare image
 def prepare_image(image_path):
     image_size = (224, 224)
@@ -44,7 +42,6 @@ def prepare_image(image_path):
         np.array(convert_to_ela_image(image_path, 90).resize(image_size)).flatten()
         / 255.0
     )
-
 
 # Display prediction result
 def display_prediction(image_path, y_pred_class):
@@ -59,7 +56,6 @@ def display_prediction(image_path, y_pred_class):
     st.pyplot(fig)
     st.markdown(f"### Detection: **{class_names[y_pred_class]}**")
 
-
 # File uploader and detect button
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg"])
 if uploaded_file is not None:
@@ -71,16 +67,22 @@ if uploaded_file is not None:
         output_format="auto",
     )
     st.write("")
-    st.write("Classifying...")
+    #st.write("Classifying...")
+
     # Prepare the image
     test_image = prepare_image(uploaded_file)
+
+    # Display status
+    status_text = st.empty()
 
     # Detect button
     if st.button("Detect Forgery"):
         with st.spinner("Analyzing the image..."):
+            status_text.text("🔄 Predicting...")
             test_image = test_image.reshape(-1, 224, 224, 3)
             y_pred = model.predict(test_image)
             y_pred_class = round(y_pred[0][0])
         display_prediction(uploaded_file, y_pred_class)
+        status_text.text("✅ Predicted")
 else:
     st.info("Please upload an image file to get started.")
