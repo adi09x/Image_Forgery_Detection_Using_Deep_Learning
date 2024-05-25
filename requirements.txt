@@ -1,4 +1,4 @@
-tensorflow==2.9.1  # Example version; use the version compatible with your code
+tensorflow  # Example version; use the version compatible with your code
 numpy
 Pillow
 matplotlib
